@@ -1,16 +1,44 @@
-app_name,package_name,activity_name,icon_file,batch,status,notes
-Phone,,,,1,planned,Identify the actual default dialer package and launcher activity on the device
-Contacts,,,,1,planned,Identify the actual contacts app package and launcher activity on the device
-Messages,,,,1,planned,Identify the actual messaging app package and launcher activity on the device
-Camera,,,,1,planned,Identify the actual camera app package and launcher activity on the device
-Gallery,,,,1,planned,Identify the actual gallery app package and launcher activity on the device
-Files,,,,1,planned,Identify the actual file manager package and launcher activity on the device
-Calendar,,,,1,planned,Identify the actual calendar package and launcher activity on the device
-Settings,,,,1,planned,Confirm whether the system settings activity can be themed by Nova
-Telegram,org.telegram.messenger,.TurboIcon,,2,needs_verification,Component was supplied in an earlier chat; verify on current device
-WhatsApp Business,com.whatsapp.w4b,com.whatsapp.Main,,2,needs_verification,Component was supplied in an earlier chat; verify on current device
-Viber,com.viber.voip,.WelcomeActivity,,2,needs_verification,Component was supplied in an earlier chat; verify on current device
-Chrome,com.android.chrome,com.google.android.apps.chrome.Main,,2,needs_verification,Component was supplied in an earlier chat; verify on current device
-YouTube ReVanced,app.revanced22.android.youtube,.revanced_original_1,,3,needs_verification,Component was supplied in an earlier chat; verify on current device
-ChatGPT,com.openai.chatgpt,.MainActivity,,6,needs_verification,Component was supplied in an earlier chat; verify on current device
-Nova Launcher Prime,com.teslacoilsw.launcher.prime,android.app.AppDetailsActivity,,7,needs_verification,Earlier component may be an app-details activity; do not assume it is the launcher icon activity
+icon_id,asset_file,category,batch,art_status,duplicate_of,notes
+"filemanager","System & files","1","existing_art","","Computer/file manager illustration"
+"explorer","System & files","1","existing_art","","Folder/explorer illustration"
+"settings","System & files","1","existing_art","","Settings illustration"
+"downloads","System & files","1","existing_art","","Download illustration"
+"drive","System & files","1","existing_art","","Drive/storage illustration"
+"play_store","System & files","1","duplicate_needs_redesign","games","Exact duplicate of games.png"
+"calculator","System & files","1","existing_art","","Calculator illustration"
+"notes","System & files","1","duplicate_needs_redesign","calculator","Exact duplicate of calculator.png"
+"clock","System & files","1","existing_art","","Clock illustration"
+"calendar","System & files","1","existing_art","","Calendar illustration"
+"phone","Communication & social","2","duplicate_needs_redesign","chatgpt","Exact duplicate of chatgpt.png"
+"contacts","Communication & social","2","existing_art","","Contacts illustration"
+"messages","Communication & social","2","existing_art","","Messages illustration"
+"telegram","Communication & social","2","duplicate_needs_redesign","messages","Exact duplicate of messages.png"
+"whatsapp","Communication & social","2","duplicate_needs_redesign","chatgpt","Exact duplicate of chatgpt.png"
+"viber","Communication & social","2","existing_art","","Viber illustration"
+"instagram","Communication & social","2","duplicate_needs_redesign","camera","Exact duplicate of camera.png"
+"facebook","Communication & social","2","duplicate_needs_redesign","contacts","Exact duplicate of contacts.png"
+"tiktok","Communication & social","2","duplicate_needs_redesign","music","Exact duplicate of music.png"
+"mail","Communication & social","2","existing_art","","Mail illustration"
+"gmail","Communication & social","2","duplicate_needs_redesign","mail","Exact duplicate of mail.png"
+"internet","Internet & maps","6","existing_art","","Globe/internet illustration"
+"chrome","Internet & maps","6","duplicate_needs_redesign","internet","Exact duplicate of internet.png"
+"maps","Internet & maps","6","existing_art","","Maps illustration"
+"camera","Photo, music & video","3","existing_art","","Camera illustration"
+"gallery","Photo, music & video","3","duplicate_needs_redesign","camera","Exact duplicate of camera.png"
+"music","Photo, music & video","3","existing_art","","Music illustration"
+"video","Photo, music & video","3","duplicate_needs_redesign","cinema","Exact duplicate of cinema.png"
+"cinema","Photo, music & video","3","existing_art","","Cinema illustration"
+"youtube","Photo, music & video","3","duplicate_needs_redesign","cinema","Exact duplicate of cinema.png"
+"bank","Finance & health","5","existing_art","","Bank illustration"
+"olx","Finance & health","5","duplicate_needs_redesign","minecraft","Exact duplicate of minecraft.png"
+"health","Finance & health","5","existing_art","","Health illustration"
+"home","Finance & health","5","existing_art","","Home illustration"
+"chatgpt","AI & assistants","7","existing_art","","Assistant illustration"
+"games","Games","4","existing_art","","Games illustration"
+"minecraft","Games","4","existing_art","","Minecraft illustration"
+"clash_of_clans","Games","4","duplicate_needs_redesign","games","Exact duplicate of games.png"
+"call_of_duty","Games","4","existing_art","","Call of Duty illustration"
+"gta_v","Games","4","existing_art","","GTA V illustration"
+"nfs","Games","4","duplicate_needs_redesign","gta_v","Exact duplicate of gta_v.png"
+"chess","Games","4","existing_art","","Chess illustration"
+"ic_pack","App launcher icon","-","app_icon_placeholder","filemanager","Application icon placeholder; not a Nova drawer entry"
