@@ -58,14 +58,36 @@ fi
 
 [ -d "$SOURCE_DIR/app/src/main" ] || fail "Не знайшов вихідну папку v3. Перевір, що ZIP лежить у Downloads як Windows_XP_Classic_Clipart_Nova_IconPack_v3.zip, або передай шлях аргументом."
 
+# Verify the official v3 archive when it is available. This prevents importing
+# a similarly named or modified ZIP by mistake.
+if [ -f "$ZIP_PATH" ]; then
+  say "Перевіряю SHA-256 архіву v3..."
+  ACTUAL_SHA256="$(python - "$ZIP_PATH" <<'PY'
+import hashlib, sys
+h = hashlib.sha256()
+with open(sys.argv[1], "rb") as f:
+    for chunk in iter(lambda: f.read(1024 * 1024), b""):
+        h.update(chunk)
+print(h.hexdigest())
+PY
+)"
+  EXPECTED_SHA256="1652c2bf9c3b69b18a07de5b9ca019e090e23c6c34d4c75ce01486ce5176390a"
+  [ "$ACTUAL_SHA256" = "$EXPECTED_SHA256" ] || fail "SHA-256 архіву v3 не збігається. Не імпортую невідомий або змінений ZIP."
+  say "SHA-256 архіву v3 підтверджено."
+fi
+
 [ -f "$SOURCE_DIR/build.sh" ] || fail "У вихідній папці немає build.sh."
 [ -f "$SOURCE_DIR/tools/generate_appfilter.py" ] || fail "У вихідній папці немає tools/generate_appfilter.py."
 [ -f "$SOURCE_DIR/appfilter-map.tsv" ] || fail "У вихідній папці немає appfilter-map.tsv."
 
 say "Клоную або оновлюю LunaDroid..."
 if [ -d "$REPO_DIR/.git" ]; then
+  if [ -n "$(git -C "$REPO_DIR" status --porcelain)" ]; then
+    fail "У ~/LunaDroid є незбережені локальні зміни. Спершу зроби commit або backup; скрипт нічого не перезапише."
+  fi
   git -C "$REPO_DIR" pull --ff-only origin main
 else
+  [ ! -e "$REPO_DIR" ] || fail "Шлях ~/LunaDroid уже існує, але це не Git-репозиторій. Перейменуй його або передай інший шлях."
   git clone "$REPO_URL" "$REPO_DIR"
 fi
 
@@ -196,7 +218,8 @@ elif '--ks-pass env:KEYSTORE_PASSWORD' not in b:
 build.write_text(b, encoding="utf-8")
 PY
 
-say "Перевіряю XML та Python-синтаксис..."
+say "Перевіряю shell, XML, Python та приватність локальної таблиці..."
+bash -n "$REPO_DIR/build.sh"
 python - "$REPO_DIR" <<'PY'
 from pathlib import Path
 import sys, xml.etree.ElementTree as ET, py_compile
@@ -206,6 +229,8 @@ for p in (root / "app/src/main").rglob("*.xml"):
 py_compile.compile(str(root / "tools/generate_appfilter.py"), doraise=True)
 print("XML і Python syntax: OK")
 PY
+git -C "$REPO_DIR" check-ignore -q appfilter-map.local.tsv || fail "appfilter-map.local.tsv не захищений .gitignore."
+
 
 cd "$REPO_DIR"
 GH_LOGIN="$(gh api user --jq .login)"
@@ -215,6 +240,10 @@ git config user.email "$GH_ID+$GH_LOGIN@users.noreply.github.com"
 
 git add .gitignore app appfilter-map.tsv build.sh tools previews docs
 git add -f scripts/import-from-termux.sh
+
+if git diff --cached --name-only | grep -Fxq "appfilter-map.local.tsv"; then
+  fail "Приватна таблиця appfilter-map.local.tsv потрапила до staging. Commit скасовано."
+fi
 
 if git diff --cached --quiet; then
   say "Немає нових змін для commit."
