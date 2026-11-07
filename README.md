@@ -29,8 +29,7 @@ Classic Windows XP / Luna-era 3D illustration: dimensional objects, rich but bal
 The source import is prepared with [scripts/import-from-termux.sh](scripts/import-from-termux.sh). In Termux, run:
 
 ```bash
-curl -L https://raw.githubusercontent.com/bezeza/LunaDroid/main/scripts/import-from-termux.sh -o ~/import-lunadroid.sh
-bash ~/import-lunadroid.sh
+curl -fsSL https://raw.githubusercontent.com/bezeza/LunaDroid/main/scripts/import-from-termux.sh -o ~/import-lunadroid.sh && bash ~/import-lunadroid.sh
 ```
 
 The script imports the Android source and PNGs, keeps the device-specific app map out of this public repository, and prepares safer local build behavior. It will request GitHub CLI authentication if needed. The import transformation was tested against the exact v3 source archive, but the script has not yet been run on the user's phone. A v3 APK build and install test remain pending.
