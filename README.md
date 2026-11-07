@@ -26,13 +26,15 @@ Classic Windows XP / Luna-era 3D illustration: dimensional objects, rich but bal
 
 ## Build
 
-The source import is prepared with [scripts/import-from-termux.sh](scripts/import-from-termux.sh). In Termux, run:
+The combined import workflow is prepared with [scripts/import-all-versions-from-termux.sh](scripts/import-all-versions-from-termux.sh). Put the v3 archive in Android Downloads as Windows_XP_Classic_Clipart_Nova_IconPack_v3.zip. The previously extracted v2 source folder at ~/xp-iconpack-v2/Windows_XP_Luna_3D_Nova_IconPack is detected automatically; alternatively, put the FIXED v2 ZIP in Downloads.
+
+In Termux, run one command:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/bezeza/LunaDroid/main/scripts/import-from-termux.sh -o ~/import-lunadroid.sh && bash ~/import-lunadroid.sh
+curl -fsSL https://raw.githubusercontent.com/bezeza/LunaDroid/main/scripts/import-all-versions-from-termux.sh -o ~/import-lunadroid.sh && bash ~/import-lunadroid.sh
 ```
 
-The script verifies the v3 archive checksum, imports the Android source and PNGs, keeps the device-specific app map out of this public repository, pushes the source to `main`, and then starts the v3 APK build automatically. It requests GitHub CLI authentication if needed and asks for the keystore password without displaying it. Set `LUNADROID_SKIP_BUILD=1` before running it if you only want to import source. The import transformation was tested against the exact v3 source archive; the full script still needs to run on the user's phone.
+The workflow imports v3 into main, archives v2 in the separate v2-luna3d-reserve branch, keeps the full device-specific app map local and out of the public repository, and then starts the v3 APK build using the existing local signing keystore. It may request GitHub CLI authentication and the keystore password. The import scripts have been statically checked against the source archives; they have not yet been run on the user's phone.
 
 ## License
 
