@@ -32,7 +32,7 @@ The source import is prepared with [scripts/import-from-termux.sh](scripts/impor
 curl -fsSL https://raw.githubusercontent.com/bezeza/LunaDroid/main/scripts/import-from-termux.sh -o ~/import-lunadroid.sh && bash ~/import-lunadroid.sh
 ```
 
-The script imports the Android source and PNGs, keeps the device-specific app map out of this public repository, and prepares safer local build behavior. It will request GitHub CLI authentication if needed. The import transformation was tested against the exact v3 source archive, but the script has not yet been run on the user's phone. A v3 APK build and install test remain pending.
+The script verifies the v3 archive checksum, imports the Android source and PNGs, keeps the device-specific app map out of this public repository, pushes the source to `main`, and then starts the v3 APK build automatically. It requests GitHub CLI authentication if needed and asks for the keystore password without displaying it. Set `LUNADROID_SKIP_BUILD=1` before running it if you only want to import source. The import transformation was tested against the exact v3 source archive; the full script still needs to run on the user's phone.
 
 ## License
 
