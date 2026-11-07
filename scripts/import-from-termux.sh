@@ -254,5 +254,12 @@ fi
 say "Надсилаю source до GitHub..."
 git push origin main
 
+if [ "${LUNADROID_SKIP_BUILD:-0}" = "1" ]; then
+  say "Збірку пропущено за LUNADROID_SKIP_BUILD=1."
+else
+  say "Запускаю локальну збірку APK v3..."
+  bash "$REPO_DIR/build.sh"
+fi
+
 say "ГОТОВО. Перевір репозиторій: https://github.com/bezeza/LunaDroid"
 say "Повна device-specific таблиця лишилася локально у appfilter-map.local.tsv і не була додана до Git."
