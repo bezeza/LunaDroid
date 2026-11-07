@@ -73,3 +73,10 @@ All notable project changes and verified milestones are recorded here.
 - The build continues to request the existing keystore password interactively without echoing it; no signing secrets are stored in GitHub.
 - Updated README to document the one-command import/build workflow.
 - The script has not yet been executed on the user's phone; actual v3 APK creation still awaits that local run.
+
+## 2026-11-07 — Combined Termux import workflow prepared
+
+- Added scripts/import-all-versions-from-termux.sh as a single entry point for importing v3 Classic Clipart into main and archiving v2 Luna 3D in v2-luna3d-reserve.
+- The workflow reuses the existing v3 importer, keeps full device-specific app maps local, and archives v2 source separately with local keystore-password prompting rather than a hard-coded password.
+- Updated README build instructions to the combined one-command workflow.
+- The script has not yet been executed on the user's phone; the v3 archive must be in Android Downloads or already extracted at the documented path, and the earlier v2 source folder should still exist.
