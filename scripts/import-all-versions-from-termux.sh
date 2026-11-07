@@ -40,6 +40,47 @@ say "Імпортую v3 Classic Clipart у main..."
 if [ ! -d "$MAIN_DIR/.git" ]; then git clone "$REPO_URL" "$MAIN_DIR"; fi
 bash "$MAIN_DIR/scripts/import-from-termux.sh" "$V3_SOURCE"
 
+
+python - "$MAIN_DIR" <<'PY'
+from pathlib import Path
+import sys
+root = Path(sys.argv[1])
+readme = root / "README.md"
+s = readme.read_text(encoding="utf-8")
+s = s.replace(
+    "The v3 Android source tree and PNG assets still need to be pushed to main.",
+    "The v3 Android source tree and PNG assets are imported into main by the Termux import script. A clean v3 APK build and install test remain pending."
+)
+readme.write_text(s, encoding="utf-8")
+
+manifest = root / "SOURCE_ARCHIVE_MANIFEST.md"
+s = manifest.read_text(encoding="utf-8")
+s = s.replace(
+    "1. The Android source tree and PNG assets are not yet present in the GitHub main branch.",
+    "1. The Android source tree and PNG assets are imported into GitHub main by the Termux import script; verify the pushed tree after the script completes."
+)
+manifest.write_text(s, encoding="utf-8")
+
+context = root / "PROJECT_CONTEXT.md"
+s = context.read_text(encoding="utf-8")
+marker = "## 15. Імпорт вихідного коду v3 із Termux"
+if marker not in s:
+    s += "\n\n" + marker + "\n\n- Скрипт імпортував Android source tree та PNG-ресурси v3 Classic Clipart у гілку main.\n- Повна таблиця застосунків збережена локально як appfilter-map.local.tsv і не комітиться.\n- Цей етап підтверджує push вихідного коду, але не підтверджує повну збірку APK або встановлення v3.\n- Наступні кроки: перевірити дерево GitHub, зібрати v3 тим самим локальним keystore та перевірити launcher mappings на телефоні.\n"
+context.write_text(s, encoding="utf-8")
+
+changelog = root / "CHANGELOG.md"
+s = changelog.read_text(encoding="utf-8")
+marker = "## 2026-11-07 — v3 source imported to main"
+if marker not in s:
+    s += "\n\n" + marker + "\n\n- Imported the v3 Classic Clipart Android source tree and PNG assets into main from Termux.\n- Kept the full device-specific package map local and excluded it from the public repository.\n- v3 APK build and installation verification remain pending.\n"
+changelog.write_text(s, encoding="utf-8")
+PY
+git -C "$MAIN_DIR" add README.md PROJECT_CONTEXT.md CHANGELOG.md SOURCE_ARCHIVE_MANIFEST.md
+if ! git -C "$MAIN_DIR" diff --cached --quiet; then
+  git -C "$MAIN_DIR" commit -m "docs: record v3 source import"
+  git -C "$MAIN_DIR" push origin main
+fi
+
 V2_SOURCE=""
 for candidate in \
   "$HOME/xp-iconpack-v2/Windows_XP_Luna_3D_Nova_IconPack" \
