@@ -9,13 +9,14 @@ A nostalgic Windows XP-inspired 3D icon pack for Android, designed primarily for
 - Project concept and visual direction documented.
 - A prototype icon pack was previously built and tested on the user's Android phone.
 - Full application coverage, icon consistency, and reproducible automated APK builds are still in progress.
-- The source project from Termux has not yet been imported into this repository.
+- The v3 source archive has been audited; a safe Termux import script is ready. The Android source tree and PNG assets still need to be pushed from the phone.
 
 ## Project documentation
 
 - [PROJECT_CONTEXT.md](PROJECT_CONTEXT.md) — full project brief, design rules, technical history, and handoff instructions for other AI assistants.
 - [CHANGELOG.md](CHANGELOG.md) — development history and verified milestones.
-- [ICON_CATALOG.csv](ICON_CATALOG.csv) — application/icon inventory and mapping status.
+- [ICON_CATALOG.csv](ICON_CATALOG.csv) — 42 icon assets, batch assignment, and duplicate-art status.
+- [SOURCE_AUDIT.md](SOURCE_AUDIT.md) — comparison of v2 and v3 source archives, duplicate-image audit, and privacy/build findings.
 
 ## Visual direction
 
@@ -23,7 +24,7 @@ Classic Windows XP / Luna-era 3D illustration: dimensional objects, rich but bal
 
 ## Build
 
-Build instructions will be added after the current Android project source and build system are imported and verified. See [PROJECT_CONTEXT.md](PROJECT_CONTEXT.md) for known Termux paths and previous build issues.
+The source import is prepared with [scripts/import-from-termux.sh](scripts/import-from-termux.sh). Run it in Termux after ensuring the v3 ZIP is in Downloads. It imports the Android source and PNGs, keeps the device-specific app map out of this public repository, and prepares safer local build behavior. The complete APK build will be verified after import.
 
 ## License
 
