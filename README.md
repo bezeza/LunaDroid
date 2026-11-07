@@ -18,6 +18,7 @@ A nostalgic Windows XP-inspired 3D icon pack for Android, designed primarily for
 - [CHANGELOG.md](CHANGELOG.md) — development history and verified milestones.
 - [ICON_CATALOG.csv](ICON_CATALOG.csv) — 42 icon assets, batch assignment, and duplicate-art status.
 - [SOURCE_AUDIT.md](SOURCE_AUDIT.md) — comparison of v2 and v3 source archives, duplicate-image audit, and privacy/build findings.
+- [SOURCE_ARCHIVE_MANIFEST.md](SOURCE_ARCHIVE_MANIFEST.md) — verified archive SHA-256 checksums, source inventory, and import validation.
 
 ## Visual direction
 
@@ -32,7 +33,7 @@ curl -L https://raw.githubusercontent.com/bezeza/LunaDroid/main/scripts/import-f
 bash ~/import-lunadroid.sh
 ```
 
-The script imports the Android source and PNGs, keeps the device-specific app map out of this public repository, and prepares safer local build behavior. It will request GitHub CLI authentication if needed. The complete APK build will be verified after import.
+The script imports the Android source and PNGs, keeps the device-specific app map out of this public repository, and prepares safer local build behavior. It will request GitHub CLI authentication if needed. The import transformation was tested against the exact v3 source archive, but the script has not yet been run on the user's phone. A v3 APK build and install test remain pending.
 
 ## License
 
