@@ -64,3 +64,12 @@ All notable project changes and verified milestones are recorded here.
 - Added a check that appfilter-map.local.tsv is ignored by Git and a final staging guard to prevent accidental publication of the private device-specific app map.
 - Updated README with a single-command import invocation.
 - Verified the exact v3 import transformations separately against the source archive. The revised shell script has been inspected; the actual Termux execution remains pending.
+
+
+## 2026-11-07 — One-command v3 import and APK build
+
+- Extended the Termux importer to start `build.sh` automatically after a successful source push to GitHub.
+- Added opt-out via `LUNADROID_SKIP_BUILD=1` for source-only imports.
+- The build continues to request the existing keystore password interactively without echoing it; no signing secrets are stored in GitHub.
+- Updated README to document the one-command import/build workflow.
+- The script has not yet been executed on the user's phone; actual v3 APK creation still awaits that local run.
