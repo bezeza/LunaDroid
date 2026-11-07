@@ -1,0 +1,16 @@
+app_name,package_name,activity_name,icon_file,batch,status,notes
+Phone,,,,1,planned,Identify the actual default dialer package and launcher activity on the device
+Contacts,,,,1,planned,Identify the actual contacts app package and launcher activity on the device
+Messages,,,,1,planned,Identify the actual messaging app package and launcher activity on the device
+Camera,,,,1,planned,Identify the actual camera app package and launcher activity on the device
+Gallery,,,,1,planned,Identify the actual gallery app package and launcher activity on the device
+Files,,,,1,planned,Identify the actual file manager package and launcher activity on the device
+Calendar,,,,1,planned,Identify the actual calendar package and launcher activity on the device
+Settings,,,,1,planned,Confirm whether the system settings activity can be themed by Nova
+Telegram,org.telegram.messenger,.TurboIcon,,2,needs_verification,Component was supplied in an earlier chat; verify on current device
+WhatsApp Business,com.whatsapp.w4b,com.whatsapp.Main,,2,needs_verification,Component was supplied in an earlier chat; verify on current device
+Viber,com.viber.voip,.WelcomeActivity,,2,needs_verification,Component was supplied in an earlier chat; verify on current device
+Chrome,com.android.chrome,com.google.android.apps.chrome.Main,,2,needs_verification,Component was supplied in an earlier chat; verify on current device
+YouTube ReVanced,app.revanced22.android.youtube,.revanced_original_1,,3,needs_verification,Component was supplied in an earlier chat; verify on current device
+ChatGPT,com.openai.chatgpt,.MainActivity,,6,needs_verification,Component was supplied in an earlier chat; verify on current device
+Nova Launcher Prime,com.teslacoilsw.launcher.prime,android.app.AppDetailsActivity,,7,needs_verification,Earlier component may be an app-details activity; do not assume it is the launcher icon activity
