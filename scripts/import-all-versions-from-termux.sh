@@ -38,7 +38,7 @@ fi
 
 say "Імпортую v3 Classic Clipart у main..."
 if [ ! -d "$MAIN_DIR/.git" ]; then git clone "$REPO_URL" "$MAIN_DIR"; fi
-bash "$MAIN_DIR/scripts/import-from-termux.sh" "$V3_SOURCE"
+LUNADROID_SKIP_BUILD=1 bash "$MAIN_DIR/scripts/import-from-termux.sh" "$V3_SOURCE"
 
 
 python - "$MAIN_DIR" <<'PY'
@@ -165,4 +165,46 @@ else
   say "Резервна гілка v2 вже актуальна; нових змін немає."
 fi
 
+
+git -C "$MAIN_DIR" pull --ff-only origin main
+python - "$MAIN_DIR" <<'PY'
+from pathlib import Path
+import sys
+root = Path(sys.argv[1])
+manifest = root / "SOURCE_ARCHIVE_MANIFEST.md"
+s = manifest.read_text(encoding="utf-8")
+s = s.replace(
+    "5. The v2 source archive is identified and checksum-verified here, but its full source tree has not yet been placed in a separate Git branch/tag.",
+    "5. The v2 source tree is preserved in the separate Git branch v2-luna3d-reserve."
+)
+manifest.write_text(s, encoding="utf-8")
+
+context = root / "PROJECT_CONTEXT.md"
+s = context.read_text(encoding="utf-8")
+marker = "## 16. Резервна гілка v2-luna3d-reserve"
+if marker not in s:
+    s += "\n\n" + marker + "\n\n- Повний вихідний код v2 Luna 3D збережено окремо в гілці v2-luna3d-reserve.\n- Основна гілка main залишається на v3 Classic Clipart.\n- Повна таблиця package mappings не публікується; вона лишається локально на телефоні.\n- У резервній гілці build.sh не містить hard-coded пароля keystore; пароль запитується локально під час збірки.\n"
+context.write_text(s, encoding="utf-8")
+
+changelog = root / "CHANGELOG.md"
+s = changelog.read_text(encoding="utf-8")
+marker = "## 2026-11-07 — v2 reserve branch created"
+if marker not in s:
+    s += "\n\n" + marker + "\n\n- Archived the v2 Luna 3D Android source and PNG assets in the separate branch v2-luna3d-reserve.\n- Kept the full device-specific app map local and out of the public repository.\n- Removed the hard-coded keystore password from the archived v2 build script; local signing still uses the user's existing keystore.\n"
+changelog.write_text(s, encoding="utf-8")
+PY
+git -C "$MAIN_DIR" add PROJECT_CONTEXT.md CHANGELOG.md SOURCE_ARCHIVE_MANIFEST.md
+if ! git -C "$MAIN_DIR" diff --cached --quiet; then
+  git -C "$MAIN_DIR" commit -m "docs: record v2 reserve branch"
+  git -C "$MAIN_DIR" push origin main
+fi
+
+say "Запускаю локальну збірку APK v3..."
+if [ "${LUNADROID_SKIP_BUILD:-0}" = "1" ]; then
+  say "Збірку пропущено за LUNADROID_SKIP_BUILD=1."
+else
+  bash "$MAIN_DIR/build.sh"
+fi
+
 say "ГОТОВО: v3 імпортовано в main, v2 збережено окремо у v2-luna3d-reserve."
+
