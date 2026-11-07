@@ -24,3 +24,14 @@ All notable project changes and verified milestones are recorded here.
 - The import script preserves the 771-row device-specific map locally as appfilter-map.local.tsv, patches the generator to merge local/public maps without committing private package inventory, generates appfilter.xml into build output, and removes hard-coded keystore password arguments.
 - Verified original v3 shell script syntax, Python generator syntax, and parsing of all 7 XML files. Did not run a full APK build because Android SDK build tools/android.jar and the user's signing key are not available in this environment.
 - Pending: user runs the import script in Termux to push the actual Java/XML/PNG source tree. Then verify launcher discovery and APK build on-device.
+
+## 2026-11-07 — Version direction approved; v2 build verified on device
+
+- User explicitly approved the version policy: v3 Classic Clipart is the primary design/source baseline; v2 Luna 3D is retained as a reserve/legacy version.
+- Reconfirmed that v3 is the correct visual direction for future work. v2 must not silently replace the v3 art direction.
+- Reviewed the user's latest Termux build log from ~/xp-iconpack-v2/Windows_XP_Luna_3D_Nova_IconPack: resource compilation and Java compilation completed, APK signing completed, and apksigner verified v1/v2/v3 signatures.
+- The generated local APK was Downloads/Windows_XP_Luna_3D_Nova_IconPack.apk. This verifies the v2 local build only; no v3 build has yet been verified.
+- The same log still reports only 6 launcher components discovered and fallback mappings used against a 771-row package map. Full launcher coverage remains unresolved.
+- Updated PROJECT_CONTEXT.md with the approved version policy, build result, limitations, and next steps.
+- v3 Android source import to main and a separate GitHub backup branch/tag for v2 source remain pending. No keystore, password, or private device app inventory was added to GitHub.
+- Next: import v3 source into main, preserve v2 source in a separate archive branch/tag, then verify a clean v3 build and repair launcher discovery.
