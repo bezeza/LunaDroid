@@ -35,3 +35,10 @@ All notable project changes and verified milestones are recorded here.
 - Updated PROJECT_CONTEXT.md with the approved version policy, build result, limitations, and next steps.
 - v3 Android source import to main and a separate GitHub backup branch/tag for v2 source remain pending. No keystore, password, or private device app inventory was added to GitHub.
 - Next: import v3 source into main, preserve v2 source in a separate archive branch/tag, then verify a clean v3 build and repair launcher discovery.
+
+## 2026-11-07 — v3 import compatibility checked
+
+- Extracted the audited v3 archive in an isolated workspace and tested the exact source blocks targeted by scripts/import-from-termux.sh.
+- Confirmed the import transformations match the v3 generator and build script; shell syntax passed, all 7 XML files parsed, and the Python generator compiled.
+- Compared Android manifests: v2 and v3 use the same application package ID, com.custom.windowsxp.novaicons. Their build scripts declare versionCode 2 and 3 respectively, so v3 is designed as an in-place upgrade when signed with the same keystore/alias.
+- This was a static/import compatibility check, not a full APK build. v3 APK compilation and installation remain pending in Termux.
