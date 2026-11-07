@@ -1,0 +1,23 @@
+# Local, device-specific app mappings — may reveal installed applications
+appfilter-map.local.tsv
+app-list*.xml
+launcher-apps*.txt
+launcher-apps*.csv
+
+# Local build output and Android signing material
+build/
+*.apk
+*.aab
+*.keystore
+*.jks
+*.p12
+*.pfx
+local.properties
+.gradle/
+.externalNativeBuild/
+.cxx/
+
+# Python and editor artifacts
+__pycache__/
+*.py[cod]
+.DS_Store
