@@ -1,0 +1,8 @@
+# Public baseline mappings. Keep device-specific mappings in appfilter-map.local.tsv (ignored by Git).
+# package_name<TAB>drawable_name<TAB>display_name
+org.telegram.messenger	telegram	Telegram
+com.whatsapp.w4b	whatsapp	WhatsApp Business
+com.viber.voip	viber	Viber
+com.android.chrome	chrome	Chrome
+app.revanced22.android.youtube	youtube	YouTube ReVanced
+com.openai.chatgpt	chatgpt	ChatGPT
