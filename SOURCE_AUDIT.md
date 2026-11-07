@@ -99,3 +99,12 @@ The import workflow stores the full map locally as `appfilter-map.local.tsv`, wh
 - The latest Termux log confirms a successful local v2 APK build and APK signature verification; it does not verify a v3 build.
 - The build log still reports only 6 launcher components discovered, with fallback mappings used. Full app coverage is not verified.
 - The v3 source tree and the separate v2 backup branch/tag have not yet been imported into GitHub.
+
+
+## Independent archive verification — 2026-11-07
+
+Both archives were materialized from the user's Library, extracted in an isolated workspace, and SHA-256 hashed. Exact values, sizes, and inventory are recorded in [SOURCE_ARCHIVE_MANIFEST.md](SOURCE_ARCHIVE_MANIFEST.md).
+
+The v3 import script was simulated against the exact extracted source tree. All three transformation blocks matched, shell syntax passed, the Python generator compiled, and all seven XML files parsed. This validates the import transformations but does not replace a full Android build or device install test.
+
+The source archives themselves are not yet committed to GitHub. The v2 reserve branch/tag should be created only after its source assets are actually stored in Git, not as a documentation-only placeholder.
