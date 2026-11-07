@@ -16,7 +16,7 @@
 
 The v3 preview and README explicitly describe a return to the soft, dimensional early-2000s Windows XP illustration style from the user's visual reference. Therefore v3 is the selected *style baseline*, even though its current assets contain more duplicate artwork than v2.
 
-The v2 archive has more unique artwork, but its look is more like glossy beveled app logos. It should be retained as a historical reference only; do not silently replace the approved v3 art direction with v2.
+The v2 archive has more unique artwork, but its look is more like glossy beveled app logos. The user has approved v2 as a reserve/legacy version only; do not silently replace the approved v3 art direction with v2. The full v2 source should be preserved separately (for example, in a dedicated Git branch or tag) rather than mixed into the v3 mainline.
 
 ## Exact duplicate artwork in v3
 
@@ -91,3 +91,11 @@ The import workflow stores the full map locally as `appfilter-map.local.tsv`, wh
 4. Fix and verify launcher activity discovery on the actual phone.
 5. Audit and replace duplicate artwork while preserving the v3 visual style.
 6. Create a GitHub Actions build only after the source tree is imported and the custom build process is verified.
+
+## User-approved version policy — 2026-11-07
+
+- v3 Classic Clipart is the primary baseline for mainline development.
+- v2 Luna 3D is retained as a reserve/legacy version.
+- The latest Termux log confirms a successful local v2 APK build and APK signature verification; it does not verify a v3 build.
+- The build log still reports only 6 launcher components discovered, with fallback mappings used. Full app coverage is not verified.
+- The v3 source tree and the separate v2 backup branch/tag have not yet been imported into GitHub.
