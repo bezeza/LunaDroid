@@ -6,10 +6,11 @@ A nostalgic Windows XP-inspired 3D icon pack for Android, designed primarily for
 
 ## Project status
 
-- Project concept and visual direction documented.
-- A prototype icon pack was previously built and tested on the user's Android phone.
+- **Primary baseline:** v3 Classic Clipart (approved by the user).
+- **Reserve version:** v2 Luna 3D; retained as a legacy backup, not as the new design direction.
+- A local v2 APK build in Termux succeeded on 2026-11-07, including APK signature verification. The v3 APK build has not yet been verified.
 - Full application coverage, icon consistency, and reproducible automated APK builds are still in progress.
-- The v3 source archive has been audited; a safe Termux import script is ready. The Android source tree and PNG assets still need to be pushed from the phone.
+- The v3 source archive has been audited; the safe Termux import script is ready. The v3 Android source tree and PNG assets still need to be pushed to main.
 
 ## Project documentation
 
