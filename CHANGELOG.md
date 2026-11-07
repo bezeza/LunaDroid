@@ -53,3 +53,14 @@ All notable project changes and verified milestones are recorded here.
 - Added `SOURCE_ARCHIVE_MANIFEST.md` with checksums, inventory, and validation status. Updated README, PROJECT_CONTEXT, and SOURCE_AUDIT.
 - This work did not upload binary source assets to GitHub and did not produce a v3 APK. Those steps still require a transfer from Termux or a supported binary upload channel, followed by a real build/install test.
 - Do not create a documentation-only v2 branch and describe it as a source backup. Create the reserve branch/tag only after the actual v2 source tree and PNG assets are committed.
+
+
+## 2026-11-07 — Safer v3 Termux import script
+
+- Added SHA-256 verification for the approved v3 ZIP before import when the archive is present in Downloads.
+- Added protection against overwriting an existing non-Git directory at ~/LunaDroid.
+- Added a clean-working-tree check before updating an existing local clone.
+- Added bash syntax validation for the transformed build script.
+- Added a check that appfilter-map.local.tsv is ignored by Git and a final staging guard to prevent accidental publication of the private device-specific app map.
+- Updated README with a single-command import invocation.
+- Verified the exact v3 import transformations separately against the source archive. The revised shell script has been inspected; the actual Termux execution remains pending.
