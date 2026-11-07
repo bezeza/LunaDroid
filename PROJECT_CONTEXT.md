@@ -194,7 +194,7 @@
 
 ## 11. Найближчі кроки
 
-1. Імпортувати v3 Classic Clipart source tree та PNG у main через підготовлений Termux script; повну device-specific таблицю залишити локально.
+1. Запустити scripts/import-all-versions-from-termux.sh у Termux: він імпортує v3 Classic Clipart source tree та PNG у main, а v2 Luna 3D збереже в окремій гілці v2-luna3d-reserve; повну device-specific таблицю залишити локально.
 2. Зберегти v2 Luna 3D як резервну версію в окремій Git-гілці або архівному тегу, не змішуючи її з основною v3 розробкою.
 3. Зробити чисту збірку саме з v3 та перевірити встановлення/оновлення в Nova Launcher.
 4. Налагодити отримання реального повного переліку launcher activities; не покладатися на 6 fallback mappings.
