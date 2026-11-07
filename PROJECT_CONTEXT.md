@@ -253,3 +253,11 @@
 ### Статус резервної копії в GitHub
 
 Архіви v3 та v2 FIXED доступні в користувацькій Library. Рішення про версії затверджено й задокументовано, але повний v3 source tree ще не імпортовано в main, а окрема Git-гілка/тег із повним v2 source tree ще не створена. Не заявляти, що вихідні файли вже збережені в GitHub, доки це не перевірено.
+
+
+### Сумісність версій і перевірка імпорту
+
+- В обох архівах manifest package id однаковий: com.custom.windowsxp.novaicons.
+- У v2 вказано versionCode 2 / versionName 2.0 Luna 3D; у v3 — versionCode 3 / versionName 3.0 Classic XP. За умови використання того самого keystore та signing alias v3 призначена для оновлення поверх v2.
+- Ізольовано перевірено, що блоки трансформації з scripts/import-from-termux.sh відповідають фактичному v3 source: зміни генератора mappings, build.sh та signing block застосовуються; shell syntax, усі 7 XML-файлів і Python syntax проходять перевірку.
+- Ця перевірка не є повною Android APK build. Повну збірку v3 потрібно виконати в Termux після імпорту.
